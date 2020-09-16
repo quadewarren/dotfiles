@@ -1,4 +1,6 @@
 [alias]
+	# View last commit in log
+	last = log -1 HEAD
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits.
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -127,7 +129,7 @@
 [commit]
 
 	# https://help.github.com/articles/signing-commits-using-gpg/
-	gpgsign = true
+	# gpgsign = true
 
 [diff]
 
@@ -181,3 +183,8 @@
 [init]
 
 	templateDir = ~/.config/git/template/
+[hub]
+	host = github.rackspace.com
+[user]
+	name = kyle8076
+	email = kyle.haley@rackspace.com

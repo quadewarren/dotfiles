@@ -22,8 +22,8 @@ set encoding=utf-8 nobomb
 " Change mapleader
 let mapleader=","
 " Don’t add empty newlines at the end of files
-set binary
-set noeol
+" set binary
+" set noeol
 " Centralize backups, swapfiles and undo history
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -48,9 +48,11 @@ syntax on
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+" set shiftwidth=4
+" set expandtab
 " Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
+" set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
+" set list
 " Highlight searches
 set hlsearch
 " Ignore case of searches
@@ -60,7 +62,7 @@ set incsearch
 " Always show status line
 set laststatus=2
 " Enable mouse in all modes
-set mouse=a
+" set mouse=a
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -76,10 +78,10 @@ set title
 " Show the (partial) command as it’s being typed
 set showcmd
 " Use relative line numbers
-if exists("&relativenumber")
-	set relativenumber
-	au BufReadPost * set relativenumber
-endif
+" if exists("&relativenumber")
+"	set norelativenumber
+"	au BufReadPost * set norelativenumber
+" endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
@@ -87,7 +89,7 @@ set scrolloff=3
 function! StripWhitespace()
 	let save_cursor = getpos(".")
 	let old_query = getreg('/')
-	:%s/\s\+$//e
+	":%s/\s\+$//e
 	call setpos('.', save_cursor)
 	call setreg('/', old_query)
 endfunction
@@ -103,4 +105,14 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+	autocmd BufRead,BufNewFile *.py set tabstop=4 shiftwidth=4 expandtab
+	autocmd BufRead,BufNewFile *.c set tabstop=3 shiftwidth=3 expandtab
+	autocmd BufRead,BufNewFile *.yml set tabstop=2 shiftwidth=2 expandtab
+	autocmd BufRead,BufNewFile *.yaml set tabstop=2 shiftwidth=2 expandtab
+	autocmd BufEnter *.lisp set ai sw=4 ts=4 sta et fo=croql
+	" autocmd FileType python map <buffer> <F3> :call flake8#Flake8()<CR>
+	" let g:syntastic_python_checkers = ['flake8']
 endif
+" Set colorcolumn to 80 for pep8
+highlight ColorColumn ctermbg=Blue guibg=Blue
+set colorcolumn=80

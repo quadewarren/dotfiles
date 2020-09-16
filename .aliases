@@ -146,3 +146,7 @@ alias reload="exec ${SHELL} -l"
 
 # Print each PATH entry on a separate line
 alias path='echo -e ${PATH//:/\\n}'
+alias ll="ls -la"
+alias workhere='source ./.venv/bin/activate'
+alias startwork='virtualenv .venv --no-site-packages --distribute --prompt="(${PWD##*/})"'
+alias startworkpy3='virtualenv .venv -p python3 --no-site-packages --distribute --prompt="(${PWD##*/})"'
